@@ -397,7 +397,11 @@ function CallDetails({ call, onViewTranscript, onJumpToLine, transcriptAvailable
                         <b>Basis:</b> {item.date_basis}
                       </span>
                     )}
-                    {item.status && <span className="status">{item.status}</span>}
+                    {item.status === "done" ? (
+                      <span className="status status-done">✓ Completed on call</span>
+                    ) : item.status ? (
+                      <span className="status status-open">Open</span>
+                    ) : null}
                   </div>
                   <CitationRow lines={item.source_lines} onJumpToLine={onJumpToLine} />
                 </div>
@@ -850,3 +854,4 @@ function UploadModal({ onClose, onComplete }) {
 }
 
 export default App;
+

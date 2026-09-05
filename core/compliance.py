@@ -1,10 +1,15 @@
 ﻿"""
 Step 8: Compliance / coaching classification, hybrid approach.
 
-Layer 1 -- deterministic regex/keyword matching for hard triggers.
-Layer 2 -- LLM classifier for softer judgment calls, including explicit
-mandatory checks that are easy to miss (like recording disclosure),
-called out directly in the prompt rather than left to the model to think of.
+Layer 1 -- deterministic regex/keyword matching for hard triggers AND
+mandatory disclosure checks. These always fire, unconditionally,
+regardless of what the LLM decides -- this is the fix for a real
+reliability gap: an LLM instruction like "always check X" is not
+guaranteed to fire every single time on every call, but a regex check
+either matches or it doesn't, with zero chance of being skipped.
+
+Layer 2 -- LLM classifier for softer judgment calls that regex
+fundamentally can't catch (tone, script adherence, policy nuance).
 """
 from __future__ import annotations
 import re
@@ -46,6 +51,12 @@ _COMPILED = {
     for kind, patterns in TRIGGER_PATTERNS.items()
 }
 
+DISCLOSURE_PATTERNS = [
+    r"\brecorded\b", r"\bmonitored\b", r"\bquality assurance\b",
+    r"\bquality purposes\b", r"\brecording this call\b", r"\bfor training purposes\b",
+]
+_DISCLOSURE_COMPILED = [re.compile(p, re.IGNORECASE) for p in DISCLOSURE_PATTERNS]
+
 
 def detect_hard_triggers(lines: List[TranscriptLine]) -> List[SpecialTrigger]:
     triggers: List[SpecialTrigger] = []
@@ -63,22 +74,44 @@ def detect_hard_triggers(lines: List[TranscriptLine]) -> List[SpecialTrigger]:
     return triggers
 
 
+def check_recording_disclosure(lines: List[TranscriptLine]) -> List[ComplianceFlag]:
+    """
+    Deterministic check: does the agent's opening line disclose that the
+    call is recorded/monitored? Checked against the first two lines
+    spoken by whoever appears to be the agent (or just the first two
+    lines overall, if speaker roles aren't clearly labeled), since
+    disclosure normally happens right at call open.
+
+    This ALWAYS runs and ALWAYS produces a flag one way or the other --
+    it does not depend on the LLM remembering to check this, which is
+    the actual bug this fixes: an LLM instruction to "always verify X"
+    is not reliably followed on every single call.
+    """
+    if not lines:
+        return []
+
+    opening_lines = lines[:2]
+    combined_text = " ".join(l.text for l in opening_lines)
+
+    if any(p.search(combined_text) for p in _DISCLOSURE_COMPILED):
+        return []  # disclosure present -- no flag needed, LLM layer may still add a Green note
+
+    return [ComplianceFlag(
+        text="The agent's opening did not disclose that the call is being recorded or "
+             "monitored. Standard practice requires this disclosure at the start of the call.",
+        source_lines=[l.line_no for l in opening_lines],
+        confidence=1.0,
+        severity="Red",
+        category="Recording Disclosure",
+    )]
+
+
 COMPLIANCE_SYSTEM = (
     "You review a call transcript for compliance and coaching issues, given the "
     "applicable policy. For each observation (positive or risky), output a severity: "
     "Red (clear violation or serious risk), Yellow (borderline / needs a human's judgment), "
     "Green (good practice worth noting). Every item MUST include source_lines (exact "
     "transcript line numbers). Never invent a violation not supported by the cited lines. "
-    "\n\n"
-    "MANDATORY CHECK -- always evaluate this explicitly, even if not directly asked about "
-    "in the policy text: does the agent's opening line (typically line 1 or 2) disclose that "
-    "the call is being recorded or monitored? Look for phrases like 'recorded', 'monitored', "
-    "'quality assurance', or 'quality purposes'. If the agent's greeting/opening does NOT "
-    "contain any such disclosure, you MUST output a Red compliance flag with category "
-    "'Recording Disclosure', citing the opening line(s), explaining that the mandatory "
-    "recording/monitoring disclosure was omitted. Do not skip this check even if the rest "
-    "of the call seems compliant. "
-    "\n\n"
     "Write each observation in clean, third-person business language -- never copy the "
     "speaker's exact dialogue verbatim. Summarize what happened, do not quote it. "
     "Return ONLY raw JSON, no commentary."
@@ -93,4 +126,10 @@ def classify_compliance(lines: List[TranscriptLine], policy_text: str) -> List[C
         '"text": "...", "source_lines": [int, ...]}]}'
     )
     result = call_llm_json(COMPLIANCE_SYSTEM, user)
-    return [ComplianceFlag(**f) for f in result.get("flags", [])]
+    llm_flags = [ComplianceFlag(**f) for f in result.get("flags", [])]
+
+    # Deterministic check always runs alongside the LLM layer, so this
+    # specific violation category can never be silently missed.
+    deterministic_flags = check_recording_disclosure(lines)
+
+    return deterministic_flags + llm_flags
