@@ -12,6 +12,11 @@ WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", 
 
 
 def _next_weekday(base: date, weekday_name: str) -> date:
+    """
+    Returns the next upcoming occurrence of weekday_name, strictly after
+    base. If base itself IS that weekday, returns 7 days later (the
+    following week's occurrence), never the same day.
+    """
     target = WEEKDAYS.index(weekday_name.lower())
     days_ahead = (target - base.weekday()) % 7
     days_ahead = days_ahead or 7
@@ -41,12 +46,19 @@ def resolve_date_phrase(phrase: Optional[str], call_date: date) -> Optional[date
     if p == "next month":
         return base_next_month(call_date)
 
+    # Weekday names, e.g. "Friday", "by Friday", "next Friday".
+    # NOTE: _next_weekday() already returns the correct upcoming occurrence
+    # of that weekday in every case, including when the call date itself
+    # falls on that weekday (it then correctly jumps a full week ahead).
+    # There is deliberately NO extra "+7 days" added just because the
+    # phrase contains the word "next" -- in everyday English, "next Friday"
+    # said on a Saturday means the very next Friday (in this case, 6 days
+    # later), not the Friday after that. A previous version of this
+    # function incorrectly added an extra week in this case, producing
+    # dates a full 7 days too late.
     for wd in WEEKDAYS:
         if wd in p:
-            target = _next_weekday(call_date, wd)
-            if "next " + wd in p:
-                target += timedelta(days=7)
-            return target
+            return _next_weekday(call_date, wd)
 
     if "tomorrow" in p:
         return call_date + timedelta(days=1)

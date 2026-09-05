@@ -18,11 +18,15 @@ GROUNDING_RULE = (
     "line(s) that support a claim, do NOT include that item at all. Never invent an item, "
     "an owner, or a date that is not directly supported by the cited lines. "
     "\n\n"
-    "IMPORTANT ON CITATIONS: when a commitment spans a negotiation between two speakers "
-    "-- e.g. one party proposes something, and the other party confirms or restates it -- "
-    "cite ALL of the lines involved in that exchange (e.g. [7, 8]), not just the final "
-    "confirming line. A commitment made by Speaker A and then confirmed/restated back by "
-    "Speaker B is grounded across BOTH lines together, not just the restatement alone. "
+    "IMPORTANT ON CITATIONS -- cite EVERY line that contributes a necessary fact to the "
+    "claim, not just the line where it was first mentioned or finally confirmed. If a "
+    "specific number, name, or detail is stated on one line and the agreement/confirmation "
+    "happens on a later line, cite BOTH lines. For example, if a dollar amount is mentioned "
+    "on line 8 and finalized on line 11, the source_lines must include [8, 11], not just "
+    "[11] -- omitting the line where the actual figure was stated will cause the item to "
+    "incorrectly fail downstream verification, even though the claim is fully supported "
+    "when both lines are considered together. When in doubt, include more of the relevant "
+    "lines rather than fewer, as long as every cited line is genuinely relevant. "
     "\n\n"
     "IMPORTANT ON WRITING STYLE -- write a clean, third-person, professional summary, "
     "NEVER copy the speaker's dialogue verbatim or near-verbatim. Do not reuse phrases "
@@ -33,11 +37,6 @@ GROUNDING_RULE = (
     "next month\"\n"
     "  GOOD (clean summary): \"Consumer agreed to pay $700 immediately and $700 by "
     "August 15\"\n"
-    "\n"
-    "  BAD (dialogue copied): \"I am escalating the duplicate charge inquiry to our "
-    "billing disputes team\"\n"
-    "  GOOD (clean summary): \"Escalated the duplicate charge inquiry to the billing "
-    "disputes team\"\n"
     "\n"
     "Every item's text field should read as a short, clear, third-person statement of "
     "fact -- never as a quoted line of speech, and never starting with 'I' as if the "
@@ -112,6 +111,15 @@ def extract_action_items(lines: List[TranscriptLine], context_block: str) -> Lis
         "still an action item -- capture it with owner set to whichever party is responsible for "
         "acting on it (often the agent/company), and date_basis set to the customer's stated phrase. "
         "\n\n"
+        "IMPORTANT ON STATUS -- distinguish between a commitment to do something LATER "
+        "(status should be 'open') versus something that was already DONE live, during "
+        "this very call (status should be 'done'). For example, if a customer reads out a "
+        "debit card number and the agent confirms 'the payment has been processed', that "
+        "already happened -- mark it 'done', not 'open'. Only mark 'open' when the action "
+        "is genuinely still pending after the call ends. Do not create an 'open' action "
+        "item for something that was fully completed and confirmed within the transcript "
+        "itself -- that just adds noise to a review queue for something already finished. "
+        "\n\n"
         "Do not restate a decision verbatim as an action item -- an action item is the distinct, "
         "concrete NEXT STEP that follows from a decision, not a copy of the decision's wording. "
         "\n\n"
@@ -123,13 +131,13 @@ def extract_action_items(lines: List[TranscriptLine], context_block: str) -> Lis
         "was not stated. "
         "\n\n"
         "For date_basis, capture the exact phrase used for timing (e.g. 'by Friday', 'by Monday', "
-        "'next month') verbatim from the transcript; do not resolve it to a calendar date yourself, "
-        "a downstream step does that."
+        "'next Friday, September 11th') verbatim from the transcript; do not resolve it to a "
+        "calendar date yourself, a downstream step does that using the actual call date."
     )
     user = (
         _prompt_header(transcript_text, context_block)
         + '\nReturn JSON: {"action_items": [{"text": "...", "owner": "... or null", '
-        '"date_basis": "... or null", "source_lines": [int, ...]}]}\n'
+        '"date_basis": "... or null", "status": "open or done", "source_lines": [int, ...]}]}\n'
     )
     result = call_llm_json(system, user)
     return [ActionItem(**a) for a in result.get("action_items", [])]

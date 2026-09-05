@@ -1,14 +1,10 @@
 ﻿"""
 Step 8: Compliance / coaching classification, hybrid approach.
 
-Layer 1 -- deterministic regex/keyword matching for hard triggers
-(cease-and-desist, legal mentions, regulatory complaint threats, wrong
-number, profanity). These are too high-stakes to leave purely to LLM
-judgment; they run first and ALWAYS produce a hit regardless of what
-the model later decides.
-
-Layer 2 -- LLM classifier for softer judgment calls (tone, script
-adherence, Red/Yellow/Green), still required to cite lines.
+Layer 1 -- deterministic regex/keyword matching for hard triggers.
+Layer 2 -- LLM classifier for softer judgment calls, including explicit
+mandatory checks that are easy to miss (like recording disclosure),
+called out directly in the prompt rather than left to the model to think of.
 """
 from __future__ import annotations
 import re
@@ -73,7 +69,18 @@ COMPLIANCE_SYSTEM = (
     "Red (clear violation or serious risk), Yellow (borderline / needs a human's judgment), "
     "Green (good practice worth noting). Every item MUST include source_lines (exact "
     "transcript line numbers). Never invent a violation not supported by the cited lines. "
-    "Write each observation in clean, third-person business language -- never copy the speaker's exact dialogue verbatim. Summarize what happened, do not quote it. "
+    "\n\n"
+    "MANDATORY CHECK -- always evaluate this explicitly, even if not directly asked about "
+    "in the policy text: does the agent's opening line (typically line 1 or 2) disclose that "
+    "the call is being recorded or monitored? Look for phrases like 'recorded', 'monitored', "
+    "'quality assurance', or 'quality purposes'. If the agent's greeting/opening does NOT "
+    "contain any such disclosure, you MUST output a Red compliance flag with category "
+    "'Recording Disclosure', citing the opening line(s), explaining that the mandatory "
+    "recording/monitoring disclosure was omitted. Do not skip this check even if the rest "
+    "of the call seems compliant. "
+    "\n\n"
+    "Write each observation in clean, third-person business language -- never copy the "
+    "speaker's exact dialogue verbatim. Summarize what happened, do not quote it. "
     "Return ONLY raw JSON, no commentary."
 )
 
@@ -87,4 +94,3 @@ def classify_compliance(lines: List[TranscriptLine], policy_text: str) -> List[C
     )
     result = call_llm_json(COMPLIANCE_SYSTEM, user)
     return [ComplianceFlag(**f) for f in result.get("flags", [])]
-
