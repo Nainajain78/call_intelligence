@@ -146,7 +146,7 @@ function App() {
         <div className="sidebar-label">CALLS</div>
 
         <div className="call-list">
-          {filteredCalls.map((call) => (
+          {filteredCalls.map((call, index) => (
             <button
               key={call.call_id}
               className={`call-list-item ${
@@ -158,11 +158,12 @@ function App() {
                 <Phone size={14} />
               </div>
               <div className="call-info">
-                <strong>{call.tag || call.call_id}</strong>
+                <strong>{index + 1}. {call.tag || call.call_id}</strong>
                 <span>
                   {call.call_type || "general"}
                   {call.call_date ? ` • ${call.call_date}` : ""}
                 </span>
+                <span style={{ opacity: 0.55, fontSize: "9px" }}>{call.call_id}</span>
               </div>
               <div className="sidebar-count">
                 {call.human_review_count || 0}
@@ -819,3 +820,6 @@ function UploadModal({ onClose, onComplete }) {
 }
 
 export default App;
+
+
+

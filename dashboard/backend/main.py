@@ -255,9 +255,22 @@ def get_calls():
                 "compliance_count": len(data.get("compliance_flags", [])),
                 "trigger_count": len(data.get("special_triggers", [])),
                 "sentiment": data.get("sentiment", {}),
+                "_file_mtime": file.stat().st_mtime,
             })
         except Exception as e:
             print(f"Could not load {file}: {e}")
+
+    # Sort newest-first: primarily by call_date (from the transcript itself),
+    # then by file modification time as a tie-breaker so calls sharing the
+    # same date/title (e.g. re-tested "v2" variants) still order predictably
+    # by when they were actually analyzed, rather than jumping around.
+    reports.sort(
+        key=lambda r: (r.get("call_date") or "", r.get("_file_mtime") or 0),
+        reverse=True,
+    )
+    for r in reports:
+        r.pop("_file_mtime", None)
+
     return reports
 
 
