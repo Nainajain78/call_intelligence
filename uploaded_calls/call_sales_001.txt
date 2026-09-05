@@ -1,0 +1,8 @@
+1: Agent: Hi Rebecca, thanks for hopping on -- following up on the proposal I sent Monday.
+2: Prospect: Yeah, we liked it, but budget is tight this quarter. Any flexibility on price?
+3: Agent: Our standard discount tops out at 15%, but let me see what I can do.
+4: Agent: I can offer you 30% off if you sign this week, that's a special exception for you.
+5: Prospect: That works, let's do it. Can you send the contract by tomorrow?
+6: Agent: Absolutely, I'll get the contract to you by tomorrow morning.
+7: Prospect: Great, and can you guarantee the new analytics dashboard ships by Q1?
+8: Agent: I can't guarantee unreleased features, but I'll flag your interest to product.

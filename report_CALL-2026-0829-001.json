@@ -1,0 +1,365 @@
+{
+  "call_id": "CALL-2026-0829-001",
+  "call_date": "2026-08-29",
+  "call_type": "collections",
+  "tag": "Apex Financial collection call",
+  "summary": "The Apex Financial agent called about an overdue personal loan of $4,500. The customer expressed anger, stated they are bankrupt, and requested all future contact be through their attorney, David Miller (555-0198). The agent recorded the attorney's details and agreed to cease direct outreach.",
+  "decisions": [
+    {
+      "text": "Suspend direct outreach to the customer and cease direct contact",
+      "source_lines": [
+        2,
+        7
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Oh god, you people again. Stop calling me! I told you guys not to call me at work!"
+        },
+        {
+          "line": 7,
+          "text": "Agent: Thank you. I have noted attorney David Miller, 555-0198, on your file and will suspend direct outreach immediately. Have a good day."
+        }
+      ]
+    },
+    {
+      "text": "Record the attorney's name and phone number on the customer's file",
+      "source_lines": [
+        6,
+        7
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 6,
+          "text": "Customer: His name is David Miller at 555-0198. Do not contact me directly ever again!"
+        },
+        {
+          "line": 7,
+          "text": "Agent: Thank you. I have noted attorney David Miller, 555-0198, on your file and will suspend direct outreach immediately. Have a good day."
+        }
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "text": "Suspend direct outreach to the customer",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": "immediately",
+      "status": "open",
+      "source_excerpts": [
+        {
+          "line": 7,
+          "text": "Agent: Thank you. I have noted attorney David Miller, 555-0198, on your file and will suspend direct outreach immediately. Have a good day."
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Stop calling me! I told you guys not to call me at work!",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Oh god, you people again. Stop calling me! I told you guys not to call me at work!"
+        }
+      ]
+    },
+    {
+      "text": "I'm currently bankrupt and I've hired a lawyer.",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!"
+        }
+      ]
+    },
+    {
+      "text": "Do not contact me directly ever again!",
+      "source_lines": [
+        6
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 6,
+          "text": "Customer: His name is David Miller at 555-0198. Do not contact me directly ever again!"
+        }
+      ]
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent did not honor the customer's request to stop calling and continued to demand payment",
+      "source_lines": [
+        2,
+        3
+      ],
+      "confidence": 1.0,
+      "severity": "Red",
+      "category": "Cease-and-Desist Violation",
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Oh god, you people again. Stop calling me! I told you guys not to call me at work!"
+        },
+        {
+          "line": 3,
+          "text": "Agent: Ma'am, I understand your frustration, but we need to resolve the balance of $4,500. Can you make a payment today?"
+        }
+      ]
+    },
+    {
+      "text": "Agent continued collection activity after the customer disclosed bankruptcy instead of pausing pending verification",
+      "source_lines": [
+        4,
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Red",
+      "category": "Bankruptcy Pause Violation",
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!"
+        },
+        {
+          "line": 5,
+          "text": "Agent: I understand. Could you please provide your attorney's name and contact number so we can update the record?"
+        }
+      ]
+    },
+    {
+      "text": "Agent did not obtain explicit consent for recording at the start of the call",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Yellow",
+      "category": "Recording Consent",
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Hello, this is Marcus calling on a recorded line from Apex Financial regarding your overdue personal loan account."
+        }
+      ]
+    },
+    {
+      "text": "Agent recorded attorney information and pledged to suspend direct outreach as requested",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Cease-and-Desist Compliance",
+      "source_excerpts": [
+        {
+          "line": 7,
+          "text": "Agent: Thank you. I have noted attorney David Miller, 555-0198, on your file and will suspend direct outreach immediately. Have a good day."
+        }
+      ]
+    }
+  ],
+  "special_triggers": [
+    {
+      "text": "Detected 'cease and desist' pattern in: \"Oh god, you people again. Stop calling me! I told you guys not to call me at work!\"",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0,
+      "kind": "cease_and_desist",
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Oh god, you people again. Stop calling me! I told you guys not to call me at work!"
+        }
+      ]
+    },
+    {
+      "text": "Detected 'legal mention' pattern in: \"I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!\"",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "kind": "legal_mention",
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!"
+        }
+      ]
+    }
+  ],
+  "sentiment": {
+    "overall": "negative",
+    "customer_sentiment": "negative",
+    "agent_sentiment": "neutral",
+    "anger_detected": true,
+    "profanity_detected": false,
+    "notes": "Customer expresses clear anger and frustration toward the agent"
+  },
+  "human_review": [
+    {
+      "reason": "Due date could not be confidently resolved from phrase 'immediately'.",
+      "related_item": "Suspend direct outreach to the customer",
+      "source_lines": [
+        7
+      ],
+      "severity": "medium",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 7,
+          "text": "Agent: Thank you. I have noted attorney David Miller, 555-0198, on your file and will suspend direct outreach immediately. Have a good day."
+        }
+      ]
+    },
+    {
+      "reason": "Cease And Desist detected -- requires human handling.",
+      "related_item": "Detected 'cease and desist' pattern in: \"Oh god, you people again. Stop calling me! I told you guys not to call me at work!\"",
+      "source_lines": [
+        2
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Oh god, you people again. Stop calling me! I told you guys not to call me at work!"
+        }
+      ]
+    },
+    {
+      "reason": "Legal Mention detected -- requires human handling.",
+      "related_item": "Detected 'legal mention' pattern in: \"I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!\"",
+      "source_lines": [
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!"
+        }
+      ]
+    },
+    {
+      "reason": "Compliance flag (Red): Cease-and-Desist Violation.",
+      "related_item": "Agent did not honor the customer's request to stop calling and continued to demand payment",
+      "source_lines": [
+        2,
+        3
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Oh god, you people again. Stop calling me! I told you guys not to call me at work!"
+        },
+        {
+          "line": 3,
+          "text": "Agent: Ma'am, I understand your frustration, but we need to resolve the balance of $4,500. Can you make a payment today?"
+        }
+      ]
+    },
+    {
+      "reason": "Compliance flag (Red): Bankruptcy Pause Violation.",
+      "related_item": "Agent continued collection activity after the customer disclosed bankruptcy instead of pausing pending verification",
+      "source_lines": [
+        4,
+        5
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!"
+        },
+        {
+          "line": 5,
+          "text": "Agent: I understand. Could you please provide your attorney's name and contact number so we can update the record?"
+        }
+      ]
+    },
+    {
+      "reason": "Compliance flag (Yellow): Recording Consent.",
+      "related_item": "Agent did not obtain explicit consent for recording at the start of the call",
+      "source_lines": [
+        1
+      ],
+      "severity": "medium",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Hello, this is Marcus calling on a recorded line from Apex Financial regarding your overdue personal loan account."
+        }
+      ]
+    },
+    {
+      "reason": "Customer anger detected during call.",
+      "related_item": null,
+      "source_lines": [],
+      "severity": "low",
+      "auto_flagged": true,
+      "source_excerpts": []
+    },
+    {
+      "reason": "Agent collected attorney contact information without first verifying the customer's identity or confirming the attorney's authority to discuss the account, which may violate privacy and verification policies.",
+      "related_item": null,
+      "source_lines": [
+        5,
+        6
+      ],
+      "severity": "high",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I understand. Could you please provide your attorney's name and contact number so we can update the record?"
+        },
+        {
+          "line": 6,
+          "text": "Customer: His name is David Miller at 555-0198. Do not contact me directly ever again!"
+        }
+      ]
+    },
+    {
+      "reason": "Agent did not document or confirm the customer's request to cease all direct contact in writing or update the Do-Not-Call list formally, which may require additional compliance steps.",
+      "related_item": null,
+      "source_lines": [
+        6,
+        7
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 6,
+          "text": "Customer: His name is David Miller at 555-0198. Do not contact me directly ever again!"
+        },
+        {
+          "line": 7,
+          "text": "Agent: Thank you. I have noted attorney David Miller, 555-0198, on your file and will suspend direct outreach immediately. Have a good day."
+        }
+      ]
+    }
+  ]
+}

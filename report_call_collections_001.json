@@ -1,0 +1,175 @@
+{
+  "call_id": "call_collections_001",
+  "call_date": "2026-07-01",
+  "call_type": "collections",
+  "tag": "Collections payment plan",
+  "summary": "The agent informed James that his account balance is $1,400, past due since May. James agreed to a split payment of $700 now and $700 next month, and asked not to be called at work. The agent will note the preferred call time after 6pm and will seek supervisor approval, following up by Friday.",
+  "decisions": [
+    {
+      "text": "Consumer agreed to a payment split of $700 today and $700 on the 15th of next month, pending supervisor approval",
+      "source_lines": [
+        7,
+        8,
+        9
+      ],
+      "confidence": 1.0
+    },
+    {
+      "text": "Agent will limit calls to after 6pm, honoring consumer's request not to call at work",
+      "source_lines": [
+        9,
+        10
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "Follow up on supervisor approval of the settlement split",
+      "source_lines": [
+        8
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": "2026-07-03",
+      "date_basis": "by Friday",
+      "status": "open"
+    },
+    {
+      "text": "Only call this number after 6pm",
+      "source_lines": [
+        10
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": "2026-07-01",
+      "date_basis": "after 6pm",
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Supervisor approval required for payment plan deviation",
+      "source_lines": [
+        8
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent confirmed call is being recorded for quality purposes",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Recording Consent"
+    },
+    {
+      "text": "Agent indicated need for supervisor approval for payment plan split, complying with policy",
+      "source_lines": [
+        8
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Supervisor Approval"
+    },
+    {
+      "text": "Consumer requested no further calls at work; agent only agreed to call after 6pm, not fully honoring cease\u2011and\u2011desist, requires compliance review",
+      "source_lines": [
+        9,
+        10
+      ],
+      "confidence": 1.0,
+      "severity": "Red",
+      "category": "Cease-and-Desist Request"
+    }
+  ],
+  "special_triggers": [
+    {
+      "text": "Detected 'cease and desist' pattern in: \"Okay, that works. Just don't call me at work anymore, please.\"",
+      "source_lines": [
+        9
+      ],
+      "confidence": 1.0,
+      "kind": "cease_and_desist"
+    }
+  ],
+  "sentiment": {
+    "overall": "neutral",
+    "customer_sentiment": "neutral",
+    "agent_sentiment": "positive",
+    "anger_detected": false,
+    "profanity_detected": false,
+    "notes": "Conversation remained calm and cooperative"
+  },
+  "human_review": [
+    {
+      "reason": "Cease And Desist detected -- requires human handling.",
+      "related_item": "Detected 'cease and desist' pattern in: \"Okay, that works. Just don't call me at work anymore, please.\"",
+      "source_lines": [
+        9
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Compliance flag (Red): Cease-and-Desist Request.",
+      "related_item": "Consumer requested no further calls at work; agent only agreed to call after 6pm, not fully honoring cease\u2011and\u2011desist, requires compliance review",
+      "source_lines": [
+        9,
+        10
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Consumer cease-and-desist request to stop calls at work; must be honored and flagged  [FAILED VERIFICATION: Line only shows consumer request, not that it must be honored or flagged]",
+      "source_lines": [
+        9
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Insufficient identity verification \u2013 agent only asked for name without confirming additional account details",
+      "related_item": null,
+      "source_lines": [
+        1,
+        2
+      ],
+      "severity": "high",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Ambiguous follow\u2011up commitment \u2013 agent says \u201cI\u2019ll follow up by Friday\u201d without specifying a date or method",
+      "related_item": null,
+      "source_lines": [
+        8
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Potential Do Not Call preference violation \u2013 consumer requests no calls at work, but agent only notes to call after 6\u202fpm without confirming explicit consent for future calls",
+      "related_item": null,
+      "source_lines": [
+        9,
+        10
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Supervisor approval for settlement split not documented \u2013 agent mentions needing approval but does not record how/when it will be obtained",
+      "related_item": null,
+      "source_lines": [
+        8
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    }
+  ]
+}

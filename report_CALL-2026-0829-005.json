@@ -1,0 +1,168 @@
+{
+  "call_id": "CALL-2026-0829-005",
+  "call_date": "2026-08-29",
+  "call_type": "collections",
+  "tag": "personal loan payoff request",
+  "summary": "The customer complained that their personal loan interest rate increased to 18% after a promotional period ended. The agent explained the promotional rate ended on August 15th and provided a payoff amount of $8,420.50 through September 2nd, noting that early payoff waivers require verification. The customer asked for wire instructions and a formal payoff quote to be emailed today.",
+  "decisions": [],
+  "action_items": [
+    {
+      "text": "wire the money by Wednesday",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "owner": "Customer",
+      "due_date": "2026-09-02",
+      "date_basis": "by Wednesday",
+      "status": "open",
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: Nobody told me that! I want to settle this whole loan today. What's the payoff balance if I wire the money by Wednesday?"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Early payoff waivers need clearance from our verifications team, preventing immediate provision of payoff instructions",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: The total payoff amount through September 2nd is $8,420.50. However, early payoff waivers need clearance from our verifications team."
+        }
+      ]
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent correctly states that early payoff waivers require clearance from the verifications team, aligning with policy that deviations need supervisor/approval.",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Compliance - Payment Waiver Approval",
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: The total payoff amount through September 2nd is $8,420.50. However, early payoff waivers need clearance from our verifications team."
+        }
+      ]
+    },
+    {
+      "text": "Agent does not confirm consumer consent to recording at the start of the call, which may be required by state law.",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Yellow",
+      "category": "Potential Recording Consent Issue",
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Thank you for calling Summit Credit Services. My name is Daniel. How can I help you today?"
+        }
+      ]
+    }
+  ],
+  "special_triggers": [],
+  "sentiment": {
+    "overall": "mixed",
+    "customer_sentiment": "negative",
+    "agent_sentiment": "neutral",
+    "anger_detected": true,
+    "profanity_detected": false,
+    "notes": "Customer shows clear frustration about unexpected rate increase"
+  },
+  "human_review": [
+    {
+      "reason": "Compliance flag (Yellow): Potential Recording Consent Issue.",
+      "related_item": "Agent does not confirm consumer consent to recording at the start of the call, which may be required by state law.",
+      "source_lines": [
+        1
+      ],
+      "severity": "medium",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Thank you for calling Summit Credit Services. My name is Daniel. How can I help you today?"
+        }
+      ]
+    },
+    {
+      "reason": "Customer anger detected during call.",
+      "related_item": null,
+      "source_lines": [],
+      "severity": "low",
+      "auto_flagged": true,
+      "source_excerpts": []
+    },
+    {
+      "reason": "Agent disclosed payoff amount and agreed to email wire instructions without first verifying the customer's identity, which is a security and compliance concern",
+      "related_item": null,
+      "source_lines": [
+        5,
+        6
+      ],
+      "severity": "high",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: The total payoff amount through September 2nd is $8,420.50. However, early payoff waivers need clearance from our verifications team."
+        },
+        {
+          "line": 6,
+          "text": "Customer: Okay, email me the wire instructions and the formal payoff quote today so I can send the funds."
+        }
+      ]
+    },
+    {
+      "reason": "Ambiguity regarding the payoff date: agent provided amount through September 2nd while customer wants to wire funds by Wednesday, creating potential confusion about the applicable cutoff date",
+      "related_item": null,
+      "source_lines": [
+        4,
+        5
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: Nobody told me that! I want to settle this whole loan today. What's the payoff balance if I wire the money by Wednesday?"
+        },
+        {
+          "line": 5,
+          "text": "Agent: The total payoff amount through September 2nd is $8,420.50. However, early payoff waivers need clearance from our verifications team."
+        }
+      ]
+    },
+    {
+      "reason": "Agent did not confirm the customer's authority or obtain explicit consent to settle the loan today, which may require additional verification or documentation",
+      "related_item": null,
+      "source_lines": [
+        4,
+        6
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: Nobody told me that! I want to settle this whole loan today. What's the payoff balance if I wire the money by Wednesday?"
+        },
+        {
+          "line": 6,
+          "text": "Customer: Okay, email me the wire instructions and the formal payoff quote today so I can send the funds."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "call_id": "call_standup_001",
+  "call_date": "2026-07-22",
+  "call_type": "standup",
+  "tag": "Login refactor and onboarding plan",
+  "summary": "Alex reported completing the login refactor and opened a PR for review. Priya will review it today. Alex is blocked on the staging deployment because the API key needs to be rotated by DevOps, and Sam will contact DevOps and provide an update by end of day. The team confirmed the decision to use option B for the onboarding flow, with Alex starting work on it tomorrow, and they plan to sync again on Friday.",
+  "decisions": [
+    {
+      "text": "Go with option B for the onboarding flow",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0
+    },
+    {
+      "text": "Sync again on Friday",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "I'll review it today.",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0,
+      "owner": "Priya",
+      "due_date": "2026-07-22",
+      "date_basis": "today",
+      "status": "open"
+    },
+    {
+      "text": "I can ping DevOps after this",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "owner": "Sam",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open"
+    },
+    {
+      "text": "I'll have an update by end of day.",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "owner": "Sam",
+      "due_date": null,
+      "date_basis": "by end of day",
+      "status": "open"
+    },
+    {
+      "text": "I'll start on that tomorrow.",
+      "source_lines": [
+        6
+      ],
+      "confidence": 1.0,
+      "owner": "Alex",
+      "due_date": "2026-07-23",
+      "date_basis": "tomorrow",
+      "status": "open"
+    },
+    {
+      "text": "let's sync again Friday.",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0,
+      "owner": "Sam",
+      "due_date": "2026-07-24",
+      "date_basis": "Friday",
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Alex is blocked on the staging deploy, waiting on DevOps to rotate the API key.",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Alex announced that the login refactor PR is up for review, indicating a completed task and code review readiness.",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Process"
+    },
+    {
+      "text": "Priya committed to review the PR today, showing prompt peer review participation.",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Collaboration"
+    },
+    {
+      "text": "Alex reported being blocked on the staging deploy awaiting an API key rotation, which could delay delivery if not escalated promptly.",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "severity": "Yellow",
+      "category": "Risk"
+    },
+    {
+      "text": "Sam offered to ping DevOps and provide an update by end of day, demonstrating proactive issue resolution.",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Collaboration"
+    },
+    {
+      "text": "Sam set a follow\u2011up sync for Friday, establishing clear next steps and timeline.",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Planning"
+    }
+  ],
+  "special_triggers": [],
+  "sentiment": {
+    "overall": "positive",
+    "customer_sentiment": "neutral",
+    "agent_sentiment": "neutral",
+    "anger_detected": false,
+    "profanity_detected": false,
+    "notes": "All participants are collaborative and upbeat."
+  },
+  "human_review": [
+    {
+      "reason": "Due date could not be confidently resolved from phrase 'by end of day'.",
+      "related_item": "I'll have an update by end of day.",
+      "source_lines": [
+        4
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Compliance flag (Yellow): Risk.",
+      "related_item": "Alex reported being blocked on the staging deploy awaiting an API key rotation, which could delay delivery if not escalated promptly.",
+      "source_lines": [
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Unclear ownership for rotating the API key \u2013 Sam says he will ping DevOps but no specific person or team is assigned to actually perform the rotation",
+      "related_item": null,
+      "source_lines": [
+        3,
+        4
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Timeline for resolving the staging deploy blocker is vague \u2013 only an \"update by end of day\" is promised without a concrete resolution deadline",
+      "related_item": null,
+      "source_lines": [
+        4
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Decision to go with option B for the onboarding flow lacks documented rationale or reference, which may be needed for future audits or design reviews",
+      "related_item": null,
+      "source_lines": [
+        5
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Sync meeting on Friday is mentioned without a specific time or agenda, making the follow\u2011up ambiguous",
+      "related_item": null,
+      "source_lines": [
+        7
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    }
+  ]
+}

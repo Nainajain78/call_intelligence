@@ -1,0 +1,7 @@
+1: Agent: Hello, this is Marcus calling on a recorded line from Apex Financial regarding your overdue personal loan account.
+2: Customer: Oh god, you people again. Stop calling me! I told you guys not to call me at work!
+3: Agent: Ma'am, I understand your frustration, but we need to resolve the balance of $4,500. Can you make a payment today?
+4: Customer: I'm currently bankrupt and I've hired a lawyer. Contact my attorney from now on or I will sue you!
+5: Agent: I understand. Could you please provide your attorney's name and contact number so we can update the record?
+6: Customer: His name is David Miller at 555-0198. Do not contact me directly ever again!
+7: Agent: Thank you. I have noted attorney David Miller, 555-0198, on your file and will suspend direct outreach immediately. Have a good day.

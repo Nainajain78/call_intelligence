@@ -1,0 +1,90 @@
+{
+  "call_id": "call_ambiguous_001",
+  "call_date": "2026-07-25",
+  "call_type": "support",
+  "tag": "Non-urgent billing inquiry",
+  "summary": "The customer called about a possible billing issue but said it was not urgent. The agent offered to investigate later and told the customer to call back if the problem persisted. The call ended with a friendly goodbye.",
+  "decisions": [
+    {
+      "text": "Customer will call back later if the issue persists",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "I'll call back if it's still an issue",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "owner": "Customer",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Customer wants to call back later, delaying any action.",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent greeted the customer courteously and set a friendly tone",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Politeness"
+    }
+  ],
+  "special_triggers": [],
+  "sentiment": {
+    "overall": "neutral",
+    "customer_sentiment": "neutral",
+    "agent_sentiment": "neutral",
+    "anger_detected": false,
+    "profanity_detected": false,
+    "notes": "Both parties are neutral and unengaged"
+  },
+  "human_review": [
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Customer is unsure of the issue and says it's not urgent, preventing immediate investigation.  [FAILED VERIFICATION: Line shows uncertainty and non\u2011urgency but does not mention preventing investigation]",
+      "source_lines": [
+        2
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Agent did not perform any customer identity verification before discussing potential billing issue",
+      "related_item": null,
+      "source_lines": [
+        1,
+        2
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Customer's issue is vague/ambiguous, making it unclear what specific problem needs resolution",
+      "related_item": null,
+      "source_lines": [
+        2,
+        3,
+        4
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    }
+  ]
+}

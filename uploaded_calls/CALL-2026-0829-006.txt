@@ -1,0 +1,6 @@
+1: Agent: Hello, my name is Elena calling from Crestview Collections. This call is being recorded for quality and compliance. May I speak with Brenda Taylor?
+2: Customer: I'm calling on behalf of my mother, Brenda. She had a stroke last month and cannot handle her finances anymore.
+3: Agent: I'm very sorry to hear that. To discuss or manage her account, we will need a power of attorney document on file.
+4: Customer: I have the legal power of attorney documents right here signed by her doctor and lawyer. Where can I send them?
+5: Agent: You can email them to legal@crestview.com. Once our legal team verifies the POA, which usually takes 48 hours, we can process a hardship payment arrangement with you.
+6: Customer: Okay, I will email the documents today. Please pause any collections calls until then.

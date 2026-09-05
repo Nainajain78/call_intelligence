@@ -1,0 +1,6 @@
+1: Agent: Good morning, this is Sarah from Horizon Auto Loans on a recorded line. Am I speaking with Mr. Robert Vance regarding your delinquent payment of $650?
+2: Customer: Yeah, this is Robert. Look, I don't give a damn about your $650 right now! My account was compromised and you guys charged me twice!
+3: Agent: Sir, please refrain from using foul language. I can review the billing history if you'll allow me a moment.
+4: Customer: Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!
+5: Agent: I am escalating the duplicate charge inquiry to our billing disputes team, but I am going to have to end this call if the profanity continues.
+6: Customer: Fine, just fix it and send me proof by email!

@@ -1,0 +1,5 @@
+1: Agent: Hello, this call may be monitored or recorded. Am I speaking with Arthur Pendelton regarding auto loan account #9042?
+2: Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!
+3: Agent: Sir, is this not 555-0143?
+4: Customer: It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!
+5: Agent: My apologies. I will update our records immediately to remove this number.

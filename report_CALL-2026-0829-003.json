@@ -1,0 +1,271 @@
+{
+  "call_id": "CALL-2026-0829-003",
+  "call_date": "2026-08-29",
+  "call_type": "collections",
+  "tag": "Wrong number collection call",
+  "summary": "The agent called to verify Arthur Pendelton's auto loan account #9042. The customer said the number was wrong, demanded no further contact, and asked to be removed from the list. The agent apologized and said the number would be removed from their records.",
+  "decisions": [
+    {
+      "text": "Agent will update records immediately to remove the customer's number, honoring the cease-and-desist request",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: My apologies. I will update our records immediately to remove this number."
+        }
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "text": "I will update our records immediately to remove this number.",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": "immediately",
+      "status": "open",
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: My apologies. I will update our records immediately to remove this number."
+        }
+      ]
+    }
+  ],
+  "blockers": [],
+  "compliance_flags": [
+    {
+      "text": "Agent failed to flag the customer's cease-and-desist request for compliance review despite the request to stop contact",
+      "source_lines": [
+        2,
+        4,
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Red",
+      "category": "Cease-and-Desist compliance",
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!"
+        },
+        {
+          "line": 4,
+          "text": "Customer: It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!"
+        },
+        {
+          "line": 5,
+          "text": "Agent: My apologies. I will update our records immediately to remove this number."
+        }
+      ]
+    },
+    {
+      "text": "Agent disclosed at the start that the call may be monitored or recorded",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Recording disclosure",
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Hello, this call may be monitored or recorded. Am I speaking with Arthur Pendelton regarding auto loan account #9042?"
+        }
+      ]
+    }
+  ],
+  "special_triggers": [
+    {
+      "text": "Detected 'cease and desist' pattern in: \"Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!\"",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0,
+      "kind": "cease_and_desist",
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!"
+        }
+      ]
+    },
+    {
+      "text": "Detected 'wrong number' pattern in: \"Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!\"",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0,
+      "kind": "wrong_number",
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!"
+        }
+      ]
+    },
+    {
+      "text": "Detected 'cease and desist' pattern in: \"It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!\"",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "kind": "cease_and_desist",
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!"
+        }
+      ]
+    }
+  ],
+  "sentiment": {
+    "overall": "negative",
+    "customer_sentiment": "negative",
+    "agent_sentiment": "neutral",
+    "anger_detected": true,
+    "profanity_detected": false,
+    "notes": "Customer expresses clear anger and frustration"
+  },
+  "human_review": [
+    {
+      "reason": "Due date could not be confidently resolved from phrase 'immediately'.",
+      "related_item": "I will update our records immediately to remove this number.",
+      "source_lines": [
+        5
+      ],
+      "severity": "medium",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: My apologies. I will update our records immediately to remove this number."
+        }
+      ]
+    },
+    {
+      "reason": "Cease And Desist detected -- requires human handling.",
+      "related_item": "Detected 'cease and desist' pattern in: \"Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!\"",
+      "source_lines": [
+        2
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!"
+        }
+      ]
+    },
+    {
+      "reason": "Wrong Number detected -- requires human handling.",
+      "related_item": "Detected 'wrong number' pattern in: \"Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!\"",
+      "source_lines": [
+        2
+      ],
+      "severity": "medium",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!"
+        }
+      ]
+    },
+    {
+      "reason": "Cease And Desist detected -- requires human handling.",
+      "related_item": "Detected 'cease and desist' pattern in: \"It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!\"",
+      "source_lines": [
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!"
+        }
+      ]
+    },
+    {
+      "reason": "Compliance flag (Red): Cease-and-Desist compliance.",
+      "related_item": "Agent failed to flag the customer's cease-and-desist request for compliance review despite the request to stop contact",
+      "source_lines": [
+        2,
+        4,
+        5
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!"
+        },
+        {
+          "line": 4,
+          "text": "Customer: It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!"
+        },
+        {
+          "line": 5,
+          "text": "Agent: My apologies. I will update our records immediately to remove this number."
+        }
+      ]
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Customer requested cease-and-desist; must be honored and flagged for compliance review  [FAILED VERIFICATION: Lines show a cease‑and‑desist request but do not indicate the need to honor it or flag for compliance review]",
+      "source_lines": [
+        2,
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Who? No, you have the wrong number! Stop bothering me with these damn calls! Take me off your list!"
+        },
+        {
+          "line": 4,
+          "text": "Customer: It is, but I've had this number for two weeks. I don't know any Arthur. Don't contact me ever again!"
+        }
+      ]
+    },
+    {
+      "reason": "Customer anger detected during call.",
+      "related_item": null,
+      "source_lines": [],
+      "severity": "low",
+      "auto_flagged": true,
+      "source_excerpts": []
+    },
+    {
+      "reason": "Agent referenced a specific account without first verifying the customer's identity, which could be a privacy compliance issue",
+      "related_item": null,
+      "source_lines": [
+        1,
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Hello, this call may be monitored or recorded. Am I speaking with Arthur Pendelton regarding auto loan account #9042?"
+        },
+        {
+          "line": 3,
+          "text": "Agent: Sir, is this not 555-0143?"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "call_id": "call_support_001",
+  "call_date": "2026-07-15",
+  "call_type": "support",
+  "tag": "TechHelp logout issue escalation",
+  "summary": "The customer called TechHelp support about frequent logouts and initially thought they had dialed the wrong company. The agent offered assistance, and the customer requested investigation and a credit for downtime. The agent said the issue would be escalated to engineering and that any credit above $20 requires manager approval.",
+  "decisions": [
+    {
+      "text": "Agent will escalate the issue to engineering",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "I'll escalate this to engineering, they'll take a look at some point.",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open"
+    },
+    {
+      "text": "I'll need to check with my manager.",
+      "source_lines": [
+        9
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "I don't have authorization for account credits above $20, I'll need to check with my manager.",
+      "source_lines": [
+        9
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent offered to let the customer end the call when they realized it was the wrong number, showing respect for the customer's time.",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Customer Service"
+    },
+    {
+      "text": "Agent asked for the customer's email to pull up the account without first performing identity verification, which may be required before accessing account details.",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "severity": "Yellow",
+      "category": "Identity Verification"
+    },
+    {
+      "text": "Agent correctly stated lack of authorization for credits above $20 and indicated need to check with a manager, avoiding an unauthorized promise of credit.",
+      "source_lines": [
+        9
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Refund Policy Compliance"
+    }
+  ],
+  "special_triggers": [
+    {
+      "text": "Detected 'wrong number' pattern in: \"Wait, actually -- is this TechHelp? I think I meant to call BrightSoft, wrong number.\"",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "kind": "wrong_number"
+    }
+  ],
+  "sentiment": {
+    "overall": "neutral",
+    "customer_sentiment": "neutral",
+    "agent_sentiment": "positive",
+    "anger_detected": false,
+    "profanity_detected": false,
+    "notes": "Polite exchange with no clear anger"
+  },
+  "human_review": [
+    {
+      "reason": "Wrong Number detected -- requires human handling.",
+      "related_item": "Detected 'wrong number' pattern in: \"Wait, actually -- is this TechHelp? I think I meant to call BrightSoft, wrong number.\"",
+      "source_lines": [
+        4
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Compliance flag (Yellow): Identity Verification.",
+      "related_item": "Agent asked for the customer's email to pull up the account without first performing identity verification, which may be required before accessing account details.",
+      "source_lines": [
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Agent did not perform proper identity verification before handling account issues (only asked for email without confirming name or other credentials)",
+      "related_item": null,
+      "source_lines": [
+        3,
+        6,
+        7
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Escalation timeline is vague (\"they'll take a look at some point\"), leaving the customer without a clear expectation for resolution",
+      "related_item": null,
+      "source_lines": [
+        7
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Agent did not obtain explicit consent from the customer before escalating the issue and before discussing potential account credit",
+      "related_item": null,
+      "source_lines": [
+        6,
+        8
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    }
+  ]
+}

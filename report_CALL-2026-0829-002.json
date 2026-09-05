@@ -1,0 +1,170 @@
+{
+  "call_id": "CALL-2026-0829-002",
+  "call_date": "2026-08-29",
+  "call_type": "collections",
+  "tag": "payment hardship request",
+  "summary": "The customer, who lost their job, said they could not afford the $1,200 monthly payment and proposed paying $700 now and $700 next month. The agent said a supervisor must approve the split and will follow up by Friday, and offered a temporary 30‑day hold on late fees while noting a permanent grace extension requires underwriting review. The customer accepted the proposed temporary hold and agreed to await the follow‑up.",
+  "decisions": [
+    {
+      "text": "Supervisor approval is required for the settlement split and the agent will follow up by Friday",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 3,
+          "text": "Agent: Let me note that — $700 today and $700 on the 15th of next month. I'll need a supervisor to approve the settlement split, I'll follow up by Friday."
+        }
+      ]
+    },
+    {
+      "text": "A temporary 30-day hold on late fees will be placed starting today",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I can place a temporary 30-day hold on late fees starting today, but a permanent grace extension requires underwriting review."
+        }
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "text": "Agent will follow up by Friday",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": "2026-09-04",
+      "date_basis": "by Friday",
+      "status": "open",
+      "source_excerpts": [
+        {
+          "line": 3,
+          "text": "Agent: Let me note that — $700 today and $700 on the 15th of next month. I'll need a supervisor to approve the settlement split, I'll follow up by Friday."
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Supervisor approval required for the settlement split",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 3,
+          "text": "Agent: Let me note that — $700 today and $700 on the 15th of next month. I'll need a supervisor to approve the settlement split, I'll follow up by Friday."
+        }
+      ]
+    },
+    {
+      "text": "Underwriting review required for a permanent grace extension",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I can place a temporary 30-day hold on late fees starting today, but a permanent grace extension requires underwriting review."
+        }
+      ]
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent informs customer that a supervisor must approve the settlement split, complying with policy that non-standard payment plans need supervisor approval.",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Supervisor Approval Required",
+      "source_excerpts": [
+        {
+          "line": 3,
+          "text": "Agent: Let me note that — $700 today and $700 on the 15th of next month. I'll need a supervisor to approve the settlement split, I'll follow up by Friday."
+        }
+      ]
+    }
+  ],
+  "special_triggers": [],
+  "sentiment": {
+    "overall": "positive",
+    "customer_sentiment": "concerned but cooperative",
+    "agent_sentiment": "helpful and professional",
+    "anger_detected": false,
+    "profanity_detected": false,
+    "notes": "Customer seeks payment relief; agent offers assistance"
+  },
+  "human_review": [
+    {
+      "reason": "Agent did not perform sufficient identity verification (e.g., DOB, SSN) before discussing account changes and settlement split",
+      "related_item": null,
+      "source_lines": [
+        1,
+        2,
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Thanks for calling Meridian Mortgage Servicing. My name is Rachel. May I have your account number?"
+        },
+        {
+          "line": 2,
+          "text": "Customer: Yeah, account #88391. Look, I lost my job last week and I can't afford the $1,200 monthly payment. That's still too much right now. Could I do $700 now and $700 next month?"
+        },
+        {
+          "line": 3,
+          "text": "Agent: Let me note that — $700 today and $700 on the 15th of next month. I'll need a supervisor to approve the settlement split, I'll follow up by Friday."
+        }
+      ]
+    },
+    {
+      "reason": "Agent's response to the customer's request for a payment due date extension is ambiguous; agent mentions a temporary hold on late fees but does not clearly confirm an extension of the due date",
+      "related_item": null,
+      "source_lines": [
+        4,
+        5
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: Okay, perfect. Will my payment due date for this month be extended while we process this?"
+        },
+        {
+          "line": 5,
+          "text": "Agent: I can place a temporary 30-day hold on late fees starting today, but a permanent grace extension requires underwriting review."
+        }
+      ]
+    },
+    {
+      "reason": "Potential misunderstanding about the scope of the temporary 30‑day hold on late fees versus an actual grace period extension; needs clarification to avoid customer confusion",
+      "related_item": null,
+      "source_lines": [
+        5
+      ],
+      "severity": "low",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I can place a temporary 30-day hold on late fees starting today, but a permanent grace extension requires underwriting review."
+        }
+      ]
+    }
+  ]
+}

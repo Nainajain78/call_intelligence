@@ -1,0 +1,172 @@
+{
+  "call_id": "CALL-2026-0829-004-v2",
+  "call_date": "2026-08-29",
+  "call_type": "collections",
+  "tag": "Duplicate charge dispute escalation",
+  "summary": "The agent called Robert Vance about a $650 delinquent payment. The customer said his account was compromised and he was charged twice, using profanity. The agent warned about the language, offered to review the billing history, and escalated the issue to the billing disputes team. The customer asked for the issue to be fixed and proof sent by email.",
+  "decisions": [
+    {
+      "text": "Escalate the duplicate charge inquiry to the billing disputes team",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "Escalate duplicate charge inquiry to billing disputes team",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "owner": "Sarah (Agent)",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Duplicate charge inquiry remains unresolved pending review by the billing disputes team",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0
+    },
+    {
+      "text": "Agent threatens to end the call if profanity continues, potentially halting resolution",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent did not obtain explicit consent for recording",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Yellow",
+      "category": "recording consent"
+    },
+    {
+      "text": "Agent asked customer to refrain from using foul language",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "professionalism"
+    },
+    {
+      "text": "Agent indicated escalation to billing disputes team for duplicate charge inquiry",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "issue escalation"
+    }
+  ],
+  "special_triggers": [
+    {
+      "text": "Detected 'regulatory complaint' pattern in: \"Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!\"",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "kind": "regulatory_complaint"
+    },
+    {
+      "text": "Detected 'profanity' pattern in: \"Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!\"",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "kind": "profanity"
+    }
+  ],
+  "sentiment": {
+    "overall": "negative",
+    "customer_sentiment": "negative",
+    "agent_sentiment": "neutral",
+    "anger_detected": true,
+    "profanity_detected": true,
+    "notes": "Customer expresses strong anger and profanity."
+  },
+  "human_review": [
+    {
+      "reason": "Regulatory Complaint detected -- requires human handling.",
+      "related_item": "Detected 'regulatory complaint' pattern in: \"Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!\"",
+      "source_lines": [
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Profanity detected -- requires human handling.",
+      "related_item": "Detected 'profanity' pattern in: \"Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!\"",
+      "source_lines": [
+        4
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Compliance flag (Yellow): recording consent.",
+      "related_item": "Agent did not obtain explicit consent for recording",
+      "source_lines": [
+        1
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Provide refund to Robert Vance  [FAILED VERIFICATION: Line only shows customer demand, no agent commitment]",
+      "source_lines": [
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Send proof of correction to Robert Vance via email  [FAILED VERIFICATION: Line is a customer request, not confirmation of sending proof]",
+      "source_lines": [
+        6
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Customer anger detected during call.",
+      "related_item": null,
+      "source_lines": [],
+      "severity": "low",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Agent proceeds to review billing history without explicit customer consent; consent is ambiguous",
+      "related_item": null,
+      "source_lines": [
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Agent agrees to send proof by email without verifying the customer's identity or confirming the email address, which is a security risk",
+      "related_item": null,
+      "source_lines": [
+        6
+      ],
+      "severity": "high",
+      "auto_flagged": false
+    }
+  ]
+}

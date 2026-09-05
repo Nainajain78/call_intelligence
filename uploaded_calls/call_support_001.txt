@@ -1,0 +1,9 @@
+1: Agent: Thanks for calling TechHelp support, this is Dana. How can I help?
+2: Customer: Hi, my account keeps logging me out every few minutes.
+3: Agent: Sorry about that. Let me pull up your account. Can I get your email?
+4: Customer: Wait, actually -- is this TechHelp? I think I meant to call BrightSoft, wrong number.
+5: Agent: No problem, this is TechHelp, happy to help if you'd like, or I can let you go.
+6: Customer: Actually since I'm here -- I've had this logout issue for weeks, can someone look into it?
+7: Agent: I'll escalate this to engineering, they'll take a look at some point.
+8: Customer: Okay, and can you also credit my account for the downtime?
+9: Agent: I don't have authorization for account credits above $20, I'll need to check with my manager.

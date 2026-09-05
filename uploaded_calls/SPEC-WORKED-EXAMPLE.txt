@@ -1,0 +1,8 @@
+1: Agent: Hi, this is Marcus calling on a recorded line regarding your overdue account.
+2: Consumer: Yes, this is James.
+3: Agent: Your balance is $1,400, past due. Can we discuss a payment plan?
+4: Consumer: I can do something, but not all at once.
+5: Agent: Understood. What can you manage?
+6: Agent: The standard plan is $1,400 in one payment, or two payments of $700.
+7: Consumer: That's still too much right now. Could I do $700 now and $700 next month?
+8: Agent: Let me note that -- $700 today and $700 on the 15th of next month. I'll need a supervisor to approve the settlement split, I'll follow up by Friday.

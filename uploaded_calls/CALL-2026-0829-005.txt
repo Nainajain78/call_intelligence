@@ -1,0 +1,6 @@
+1: Agent: Thank you for calling Summit Credit Services. My name is Daniel. How can I help you today?
+2: Customer: Hi, I received a letter saying my personal loan interest rate jumped to 18%. That's not what I signed up for.
+3: Agent: Let me pull up your agreement. Ah, yes, your initial 12-month promotional rate ended on August 15th.
+4: Customer: Nobody told me that! I want to settle this whole loan today. What's the payoff balance if I wire the money by Wednesday?
+5: Agent: The total payoff amount through September 2nd is $8,420.50. However, early payoff waivers need clearance from our verifications team.
+6: Customer: Okay, email me the wire instructions and the formal payoff quote today so I can send the funds.

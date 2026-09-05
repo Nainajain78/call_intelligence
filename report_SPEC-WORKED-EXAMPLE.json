@@ -1,0 +1,156 @@
+{
+  "call_id": "SPEC-WORKED-EXAMPLE",
+  "call_date": "2026-07-01",
+  "call_type": "collections",
+  "tag": "Overdue account payment arrangement",
+  "summary": "The agent informed the consumer of a $1,400 overdue balance and offered payment options. The consumer proposed paying $700 now and $700 the following month. The agent agreed to note the split and said a supervisor would need to approve it, with a follow\u2011up promised by Friday.",
+  "decisions": [
+    {
+      "text": "Agent will obtain supervisor approval for the $700 today and $700 on the 15th of next month payment split and will follow up with the consumer by Friday",
+      "source_lines": [
+        7,
+        8
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "Agent will follow up by Friday",
+      "source_lines": [
+        8
+      ],
+      "confidence": 1.0,
+      "owner": "Marcus (Agent)",
+      "due_date": "2026-07-03",
+      "date_basis": "by Friday",
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Supervisor approval required for the proposed split payment plan, delaying finalization of the agreement",
+      "source_lines": [
+        7,
+        8
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent confirmed the call was being recorded at the start of the interaction, satisfying consent requirements.",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Recording Consent"
+    },
+    {
+      "text": "Agent presented the standard payment options, including a single payment or two equal installments, providing the consumer with clear repayment choices.",
+      "source_lines": [
+        3,
+        6
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Payment Plan Offer"
+    },
+    {
+      "text": "Agent indicated that a supervisor's approval was required for the proposed split payment arrangement, aligning with policy that deviations from standard terms need supervisory sign\u2011off.",
+      "source_lines": [
+        8
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Supervisor Approval"
+    }
+  ],
+  "special_triggers": [],
+  "sentiment": {
+    "overall": "neutral",
+    "customer_sentiment": "neutral",
+    "agent_sentiment": "neutral",
+    "anger_detected": false,
+    "profanity_detected": false,
+    "notes": "Both parties remain cooperative and focused on payment arrangement"
+  },
+  "human_review": [
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Consumer will pay $700 today  [FAILED VERIFICATION: Consumer only proposes $700 now, not a confirmed payment]",
+      "source_lines": [
+        7,
+        8
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Consumer will pay $700 on the 15th of next month  [FAILED VERIFICATION: Consumer only proposes $700 next month, no commitment to specific date]",
+      "source_lines": [
+        7,
+        8
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Agent will obtain supervisor approval for the settlement split  [FAILED VERIFICATION: Agent states need for supervisor approval, not a promise to obtain it]",
+      "source_lines": [
+        8
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Agent did not obtain explicit consent for recording the call",
+      "related_item": null,
+      "source_lines": [
+        1
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Agent did not verify consumer's identity beyond name",
+      "related_item": null,
+      "source_lines": [
+        2
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Agent promised a supervisor approval without confirming that the consumer agrees to the conditional arrangement",
+      "related_item": null,
+      "source_lines": [
+        8
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Agent did not disclose any applicable fees, interest, or total payoff amount beyond the principal balance",
+      "related_item": null,
+      "source_lines": [
+        3,
+        6
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Agent did not provide a written confirmation or clear next steps for the payment plan, which may be required for compliance",
+      "related_item": null,
+      "source_lines": [
+        8
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    }
+  ]
+}

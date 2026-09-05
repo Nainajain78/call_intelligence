@@ -1,0 +1,252 @@
+{
+  "call_id": "call_collections_002",
+  "call_date": "2026-07-08",
+  "call_type": "collections",
+  "tag": "Bankruptcy collection dispute",
+  "summary": "The agent called the consumer about an outstanding $2,300 balance. The consumer said they had filed for bankruptcy, had already provided proof, and demanded no further calls, threatening to sue. The agent acknowledged the request, said they would verify with compliance, pause the account, and escalate the issue to a supervisor.",
+  "decisions": [
+    {
+      "text": "Agent will pause the account and escalate to a supervisor",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "I'll update our records",
+      "source_lines": [
+        3
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open"
+    },
+    {
+      "text": "I will need to verify that with our compliance team before continuing",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open"
+    },
+    {
+      "text": "I'm going to pause this account and escalate to a supervisor today",
+      "source_lines": [
+        7
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": "2026-07-08",
+      "date_basis": "today",
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "I already told you guys not to call me at work anymore.",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0
+    },
+    {
+      "text": "I filed for bankruptcy last month, you shouldn't even be calling.",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Consumer asked not to be called; agent apologized but continued the discussion about the balance",
+      "source_lines": [
+        2,
+        3
+      ],
+      "confidence": 1.0,
+      "severity": "Red",
+      "category": "Cease-and-Desist request not honored"
+    },
+    {
+      "text": "Agent acknowledged bankruptcy mention and said verification with compliance team before continuing, pausing activity as required",
+      "source_lines": [
+        4,
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Bankruptcy handling"
+    },
+    {
+      "text": "Agent recognized consumer's threat to sue and paused the account, escalating to a supervisor",
+      "source_lines": [
+        6,
+        7
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Threat response"
+    },
+    {
+      "text": "Agent did not obtain or confirm consent to record the call at the start, which may be required by state law",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Yellow",
+      "category": "Recording consent not confirmed"
+    }
+  ],
+  "special_triggers": [
+    {
+      "text": "Detected 'cease and desist' pattern in: \"I already told you guys not to call me at work anymore.\"",
+      "source_lines": [
+        2
+      ],
+      "confidence": 1.0,
+      "kind": "cease_and_desist"
+    },
+    {
+      "text": "Detected 'legal mention' pattern in: \"I filed for bankruptcy last month, you shouldn't even be calling.\"",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "kind": "legal_mention"
+    },
+    {
+      "text": "Detected 'legal mention' pattern in: \"If you call me again I will sue you, contact my attorney from now on.\"",
+      "source_lines": [
+        6
+      ],
+      "confidence": 1.0,
+      "kind": "legal_mention"
+    },
+    {
+      "text": "Detected 'profanity' pattern in: \"Fine. Also this is bullshit, I already sent proof of bankruptcy last week.\"",
+      "source_lines": [
+        8
+      ],
+      "confidence": 1.0,
+      "kind": "profanity"
+    }
+  ],
+  "sentiment": {
+    "overall": "negative",
+    "customer_sentiment": "negative",
+    "agent_sentiment": "neutral",
+    "anger_detected": true,
+    "profanity_detected": true,
+    "notes": "Consumer expresses anger and frustration; agent remains calm and professional."
+  },
+  "human_review": [
+    {
+      "reason": "Cease And Desist detected -- requires human handling.",
+      "related_item": "Detected 'cease and desist' pattern in: \"I already told you guys not to call me at work anymore.\"",
+      "source_lines": [
+        2
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Legal Mention detected -- requires human handling.",
+      "related_item": "Detected 'legal mention' pattern in: \"I filed for bankruptcy last month, you shouldn't even be calling.\"",
+      "source_lines": [
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Legal Mention detected -- requires human handling.",
+      "related_item": "Detected 'legal mention' pattern in: \"If you call me again I will sue you, contact my attorney from now on.\"",
+      "source_lines": [
+        6
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Profanity detected -- requires human handling.",
+      "related_item": "Detected 'profanity' pattern in: \"Fine. Also this is bullshit, I already sent proof of bankruptcy last week.\"",
+      "source_lines": [
+        8
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Compliance flag (Red): Cease-and-Desist request not honored.",
+      "related_item": "Consumer asked not to be called; agent apologized but continued the discussion about the balance",
+      "source_lines": [
+        2,
+        3
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Compliance flag (Yellow): Recording consent not confirmed.",
+      "related_item": "Agent did not obtain or confirm consent to record the call at the start, which may be required by state law",
+      "source_lines": [
+        1
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Agent will update records to stop calling the consumer at work  [FAILED VERIFICATION: Line mentions updating records but not stopping calls at work]",
+      "source_lines": [
+        3
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Customer anger detected during call.",
+      "related_item": null,
+      "source_lines": [],
+      "severity": "low",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Agent did not verify the consumer's identity before discussing the outstanding balance, which is required for compliance and fraud prevention.",
+      "related_item": null,
+      "source_lines": [
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Unclear whether the consumer's do\u2011not\u2011call request was fully honored; the agent only said \"I'll update our records\" without confirming addition to a DNC list.",
+      "related_item": null,
+      "source_lines": [
+        2,
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Need human verification that the consumer's proof of bankruptcy has been properly logged and that the pause/escalation actions fully comply with bankruptcy collection restrictions.",
+      "related_item": null,
+      "source_lines": [
+        5,
+        8
+      ],
+      "severity": "high",
+      "auto_flagged": false
+    }
+  ]
+}

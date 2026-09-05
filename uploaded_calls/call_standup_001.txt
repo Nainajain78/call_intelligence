@@ -1,0 +1,7 @@
+1: Alex: Quick standup -- I finished the login refactor, PR is up for review.
+2: Priya: I'll review it today.
+3: Alex: Thanks. I'm blocked on the staging deploy though, waiting on DevOps to rotate the API key.
+4: Sam: I can ping DevOps after this, I'll have an update by end of day.
+5: Priya: Also, we decided in the design review yesterday to go with option B for the onboarding flow.
+6: Alex: Right, and I'll start on that tomorrow.
+7: Sam: Sounds good, let's sync again Friday.

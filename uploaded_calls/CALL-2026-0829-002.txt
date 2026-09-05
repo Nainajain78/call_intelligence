@@ -1,0 +1,6 @@
+1: Agent: Thanks for calling Meridian Mortgage Servicing. My name is Rachel. May I have your account number?
+2: Customer: Yeah, account #88391. Look, I lost my job last week and I can't afford the $1,200 monthly payment. That's still too much right now. Could I do $700 now and $700 next month?
+3: Agent: Let me note that — $700 today and $700 on the 15th of next month. I'll need a supervisor to approve the settlement split, I'll follow up by Friday.
+4: Customer: Okay, perfect. Will my payment due date for this month be extended while we process this?
+5: Agent: I can place a temporary 30-day hold on late fees starting today, but a permanent grace extension requires underwriting review.
+6: Customer: Alright, sounds fair. I'll watch out for the follow-up.

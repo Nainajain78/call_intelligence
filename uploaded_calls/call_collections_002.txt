@@ -1,0 +1,8 @@
+1: Agent: Hi, this is Priya calling from Alpine Recovery regarding your outstanding balance of $2,300.
+2: Consumer: I already told you guys not to call me at work anymore.
+3: Agent: I apologize, I'll update our records. Can we discuss the balance?
+4: Consumer: I filed for bankruptcy last month, you shouldn't even be calling.
+5: Agent: I see, I'll need to verify that with our compliance team before continuing.
+6: Consumer: If you call me again I will sue you, contact my attorney from now on.
+7: Agent: Understood. I'm going to pause this account and escalate to a supervisor today.
+8: Consumer: Fine. Also this is bullshit, I already sent proof of bankruptcy last week.

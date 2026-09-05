@@ -1,0 +1,145 @@
+{
+  "call_id": "call_sales_001",
+  "call_date": "2026-07-20",
+  "call_type": "sales",
+  "tag": "discount offer agreement",
+  "summary": "The agent followed up on a proposal and discussed pricing after the prospect said their budget was tight. The agent offered a special 30% discount for signing within the week, which the prospect accepted and requested the contract by the next day. The prospect also asked about a new analytics dashboard shipping by Q1, and the agent said they could not guarantee it but would forward the request to product.",
+  "decisions": [
+    {
+      "text": "Agent will provide a 30% discount if the prospect signs this week",
+      "source_lines": [
+        4,
+        5
+      ],
+      "confidence": 1.0
+    },
+    {
+      "text": "Agent will send the contract to the prospect by tomorrow morning",
+      "source_lines": [
+        5,
+        6
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "action_items": [
+    {
+      "text": "Offer 30% discount if prospect signs this week",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": "this week",
+      "status": "open"
+    },
+    {
+      "text": "Send contract to prospect by tomorrow morning",
+      "source_lines": [
+        6
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": "2026-07-21",
+      "date_basis": "by tomorrow morning",
+      "status": "open"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Cannot guarantee the release of unreleased product features, so the promised new analytics dashboard cannot be assured for Q1.",
+      "source_lines": [
+        8
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent offered a 30% discount, exceeding the allowed 15% discount without manager approval.",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "severity": "Red",
+      "category": "Pricing Discount Violation"
+    },
+    {
+      "text": "Agent correctly refused to guarantee unreleased feature and instead flagged interest to product.",
+      "source_lines": [
+        7,
+        8
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Feature Guarantee Compliance"
+    }
+  ],
+  "special_triggers": [],
+  "sentiment": {
+    "overall": "positive",
+    "customer_sentiment": "positive",
+    "agent_sentiment": "positive",
+    "anger_detected": false,
+    "profanity_detected": false,
+    "notes": "Both parties are cooperative and agreeable"
+  },
+  "human_review": [
+    {
+      "reason": "Due date could not be confidently resolved from phrase 'this week'.",
+      "related_item": "Offer 30% discount if prospect signs this week",
+      "source_lines": [
+        4
+      ],
+      "severity": "medium",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Compliance flag (Red): Pricing Discount Violation.",
+      "related_item": "Agent offered a 30% discount, exceeding the allowed 15% discount without manager approval.",
+      "source_lines": [
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Flag prospect's interest in new analytics dashboard to product team  [FAILED VERIFICATION: Line mentions flagging interest but does not specify it concerns a new analytics dashboard.]",
+      "source_lines": [
+        8
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Discount beyond the standard 15% limit requires manager approval, so the offered 30% discount cannot be confirmed without that approval.  [FAILED VERIFICATION: Lines mention a 30% special exception but do not state manager approval is required]",
+      "source_lines": [
+        3,
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true
+    },
+    {
+      "reason": "Agent offered a 30% discount exceeding the stated standard 15% discount; requires verification of discount authority/manager approval",
+      "related_item": null,
+      "source_lines": [
+        4
+      ],
+      "severity": "medium",
+      "auto_flagged": false
+    },
+    {
+      "reason": "Agent\u2019s statement about not guaranteeing unreleased features may create unclear expectations about product roadmap; should be clarified",
+      "related_item": null,
+      "source_lines": [
+        8
+      ],
+      "severity": "low",
+      "auto_flagged": false
+    }
+  ]
+}

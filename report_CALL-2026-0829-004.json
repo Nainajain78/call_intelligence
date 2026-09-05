@@ -1,0 +1,242 @@
+{
+  "call_id": "CALL-2026-0829-004",
+  "call_date": "2026-08-29",
+  "call_type": "collections",
+  "tag": "Duplicate charge dispute escalation",
+  "summary": "The agent called Robert Vance about a $650 delinquent payment. The customer said his account was compromised and he was charged twice, using profanity. The agent warned about the language, offered to review the billing history, and escalated the issue to the billing disputes team. The customer asked for the issue to be fixed and proof sent by email.",
+  "decisions": [
+    {
+      "text": "Agent will escalate the duplicate charge inquiry to the billing disputes team",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I am escalating the duplicate charge inquiry to our billing disputes team, but I am going to have to end this call if the profanity continues."
+        }
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "text": "I am escalating the duplicate charge inquiry to our billing disputes team",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "owner": "Agent",
+      "due_date": null,
+      "date_basis": null,
+      "status": "open",
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I am escalating the duplicate charge inquiry to our billing disputes team, but I am going to have to end this call if the profanity continues."
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Agent warned they will end the call if profanity continues, indicating a potential call termination",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I am escalating the duplicate charge inquiry to our billing disputes team, but I am going to have to end this call if the profanity continues."
+        }
+      ]
+    }
+  ],
+  "compliance_flags": [
+    {
+      "text": "Agent did not obtain consumer's consent to recording at start of call",
+      "source_lines": [
+        1
+      ],
+      "confidence": 1.0,
+      "severity": "Yellow",
+      "category": "Recording Consent",
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Good morning, this is Sarah from Horizon Auto Loans on a recorded line. Am I speaking with Mr. Robert Vance regarding your delinquent payment of $650?"
+        }
+      ]
+    },
+    {
+      "text": "Agent politely asked customer to refrain from profanity and warned about ending the call if it continues",
+      "source_lines": [
+        3,
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Coaching - Call Control",
+      "source_excerpts": [
+        {
+          "line": 3,
+          "text": "Agent: Sir, please refrain from using foul language. I can review the billing history if you'll allow me a moment."
+        },
+        {
+          "line": 5,
+          "text": "Agent: I am escalating the duplicate charge inquiry to our billing disputes team, but I am going to have to end this call if the profanity continues."
+        }
+      ]
+    },
+    {
+      "text": "Agent escalated duplicate charge inquiry to billing disputes team as appropriate",
+      "source_lines": [
+        5
+      ],
+      "confidence": 1.0,
+      "severity": "Green",
+      "category": "Coaching - Issue Escalation",
+      "source_excerpts": [
+        {
+          "line": 5,
+          "text": "Agent: I am escalating the duplicate charge inquiry to our billing disputes team, but I am going to have to end this call if the profanity continues."
+        }
+      ]
+    }
+  ],
+  "special_triggers": [
+    {
+      "text": "Detected 'profanity' pattern in: \"Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!\"",
+      "source_lines": [
+        4
+      ],
+      "confidence": 1.0,
+      "kind": "profanity",
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!"
+        }
+      ]
+    }
+  ],
+  "sentiment": {
+    "overall": "negative",
+    "customer_sentiment": "negative",
+    "agent_sentiment": "neutral",
+    "anger_detected": true,
+    "profanity_detected": true,
+    "notes": "Customer expresses strong anger and profanity; agent remains professional."
+  },
+  "human_review": [
+    {
+      "reason": "Profanity detected -- requires human handling.",
+      "related_item": "Detected 'profanity' pattern in: \"Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!\"",
+      "source_lines": [
+        4
+      ],
+      "severity": "medium",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 4,
+          "text": "Customer: Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!"
+        }
+      ]
+    },
+    {
+      "reason": "Compliance flag (Yellow): Recording Consent.",
+      "related_item": "Agent did not obtain consumer's consent to recording at start of call",
+      "source_lines": [
+        1
+      ],
+      "severity": "medium",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 1,
+          "text": "Agent: Good morning, this is Sarah from Horizon Auto Loans on a recorded line. Am I speaking with Mr. Robert Vance regarding your delinquent payment of $650?"
+        }
+      ]
+    },
+    {
+      "reason": "Item failed automated grounding verification -- do not trust as-is.",
+      "related_item": "Customer used profanity, which may halt the call progress  [FAILED VERIFICATION: Lines show profanity but do not mention halting the call]",
+      "source_lines": [
+        2,
+        4
+      ],
+      "severity": "high",
+      "auto_flagged": true,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Yeah, this is Robert. Look, I don't give a damn about your $650 right now! My account was compromised and you guys charged me twice!"
+        },
+        {
+          "line": 4,
+          "text": "Customer: Don't tell me what to do! This is complete bullshit! You guys are corrupt stealing my money! I want my refund by Monday or I'm calling the Bureau of Consumer Financial Protection!"
+        }
+      ]
+    },
+    {
+      "reason": "Customer anger detected during call.",
+      "related_item": null,
+      "source_lines": [],
+      "severity": "low",
+      "auto_flagged": true,
+      "source_excerpts": []
+    },
+    {
+      "reason": "Agent did not perform any identity verification before discussing account details, which is required for privacy compliance",
+      "related_item": null,
+      "source_lines": [
+        2,
+        3
+      ],
+      "severity": "high",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 2,
+          "text": "Customer: Yeah, this is Robert. Look, I don't give a damn about your $650 right now! My account was compromised and you guys charged me twice!"
+        },
+        {
+          "line": 3,
+          "text": "Agent: Sir, please refrain from using foul language. I can review the billing history if you'll allow me a moment."
+        }
+      ]
+    },
+    {
+      "reason": "Consent to review billing history is ambiguous; agent asks for permission but no explicit affirmative response is recorded",
+      "related_item": null,
+      "source_lines": [
+        3
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 3,
+          "text": "Agent: Sir, please refrain from using foul language. I can review the billing history if you'll allow me a moment."
+        }
+      ]
+    },
+    {
+      "reason": "Agent promises to send proof by email without first confirming or verifying the customer's email address",
+      "related_item": null,
+      "source_lines": [
+        6
+      ],
+      "severity": "medium",
+      "auto_flagged": false,
+      "source_excerpts": [
+        {
+          "line": 6,
+          "text": "Customer: Fine, just fix it and send me proof by email!"
+        }
+      ]
+    }
+  ]
+}
