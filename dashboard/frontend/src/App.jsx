@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import {
   Upload,
   Phone,
@@ -17,11 +17,13 @@ import {
 import "./App.css";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 function App() {
   const [calls, setCalls] = useState([]);
   const [selectedCall, setSelectedCall] = useState(null);
   const [transcript, setTranscript] = useState(null);
   const [showTranscript, setShowTranscript] = useState(false);
+  const [jumpToLine, setJumpToLine] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [loadingCall, setLoadingCall] = useState(false);
@@ -69,6 +71,7 @@ function App() {
       setError("");
       setTranscript(null);
       setShowTranscript(false);
+      setJumpToLine(null);
 
       const response = await fetch(
         `${API_URL}/api/calls/${encodeURIComponent(callId)}`
@@ -100,6 +103,14 @@ function App() {
     } finally {
       setLoadingCall(false);
     }
+  }
+
+  // Fast, single entry point every citation pill calls -- opens the
+  // transcript modal (if not already open) and jumps straight to the
+  // clicked line. No re-fetch, no delay -- transcript is already loaded.
+  function jumpToTranscriptLine(lineNo) {
+    setJumpToLine(lineNo);
+    setShowTranscript(true);
   }
 
   const filteredCalls = calls.filter((call) => {
@@ -215,6 +226,7 @@ function App() {
           <CallDetails
             call={selectedCall}
             onViewTranscript={() => setShowTranscript(true)}
+            onJumpToLine={jumpToTranscriptLine}
             transcriptAvailable={
               transcript && !transcript.unavailable && transcript.lines?.length > 0
             }
@@ -238,7 +250,11 @@ function App() {
         <TranscriptModal
           transcript={transcript}
           call={selectedCall}
-          onClose={() => setShowTranscript(false)}
+          jumpToLine={jumpToLine}
+          onClose={() => {
+            setShowTranscript(false);
+            setJumpToLine(null);
+          }}
         />
       )}
     </div>
@@ -289,7 +305,7 @@ function Metric({ icon, label, value, danger }) {
    CALL DETAILS
 ============================================================ */
 
-function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
+function CallDetails({ call, onViewTranscript, onJumpToLine, transcriptAvailable }) {
   const stats = call._dashboard_stats || {};
 
   return (
@@ -346,7 +362,7 @@ function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
               text={decision.text}
               confidence={decision.confidence}
               sourceLines={decision.source_lines}
-              excerpts={decision.source_excerpts}
+              onJumpToLine={onJumpToLine}
             />
           ))
         ) : (
@@ -383,7 +399,7 @@ function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
                     )}
                     {item.status && <span className="status">{item.status}</span>}
                   </div>
-                  <Source lines={item.source_lines} excerpts={item.source_excerpts} />
+                  <CitationRow lines={item.source_lines} onJumpToLine={onJumpToLine} />
                 </div>
               </div>
               <Confidence value={item.confidence} />
@@ -404,7 +420,7 @@ function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
               text={blocker.text}
               confidence={blocker.confidence}
               sourceLines={blocker.source_lines}
-              excerpts={blocker.source_excerpts}
+              onJumpToLine={onJumpToLine}
             />
           ))
         ) : (
@@ -424,7 +440,7 @@ function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
                 <span className="category">{flag.category || "Compliance"}</span>
               </div>
               <p>{flag.text}</p>
-              <Source lines={flag.source_lines} excerpts={flag.source_excerpts} />
+              <CitationRow lines={flag.source_lines} onJumpToLine={onJumpToLine} />
               <Confidence value={flag.confidence} />
             </div>
           ))
@@ -455,7 +471,7 @@ function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
               text={trigger.text}
               confidence={trigger.confidence}
               sourceLines={trigger.source_lines}
-              excerpts={trigger.source_excerpts}
+              onJumpToLine={onJumpToLine}
             />
           ))
         ) : (
@@ -476,7 +492,7 @@ function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
               </div>
               <h4>{review.reason}</h4>
               {review.related_item && <p>{review.related_item}</p>}
-              <Source lines={review.source_lines} excerpts={review.source_excerpts} />
+              <CitationRow lines={review.source_lines} onJumpToLine={onJumpToLine} />
             </div>
           ))
         ) : (
@@ -491,10 +507,45 @@ function CallDetails({ call, onViewTranscript, transcriptAvailable }) {
 }
 
 /* ============================================================
+   CITATION ROW -- fast, compact "Line N" pills. Click jumps
+   straight to the transcript modal at that line, no delay,
+   no inline excerpt box cluttering the card.
+============================================================ */
+
+function CitationRow({ lines, onJumpToLine }) {
+  if (!lines?.length) {
+    return <div className="no-source">No source evidence</div>;
+  }
+  return (
+    <div className="citation-row">
+      <span className="citation-label">SOURCE:</span>
+      {lines.map((line) => (
+        <button
+          key={line}
+          className="citation-pill"
+          onClick={() => onJumpToLine(line)}
+          title={`Jump to line ${line} in transcript`}
+        >
+          Line {line}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/* ============================================================
    TRANSCRIPT MODAL
 ============================================================ */
 
-function TranscriptModal({ transcript, call, onClose }) {
+function TranscriptModal({ transcript, call, jumpToLine, onClose }) {
+  const lineRefs = useRef({});
+
+  useEffect(() => {
+    if (jumpToLine != null && lineRefs.current[jumpToLine]) {
+      lineRefs.current[jumpToLine].scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [jumpToLine, transcript]);
+
   return (
     <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="modal transcript-modal">
@@ -518,8 +569,13 @@ function TranscriptModal({ transcript, call, onClose }) {
               const match = l.text.match(/^([^:]+):\s*(.*)$/);
               const speaker = match ? match[1] : "";
               const text = match ? match[2] : l.text;
+              const isHighlighted = jumpToLine === l.line;
               return (
-                <div className="transcript-line" key={l.line}>
+                <div
+                  className={`transcript-line ${isHighlighted ? "transcript-line-highlight" : ""}`}
+                  key={l.line}
+                  ref={(el) => (lineRefs.current[l.line] = el)}
+                >
                   <span className="transcript-ln">{l.line}</span>
                   <span className="transcript-speaker">{speaker}</span>
                   <span className="transcript-text">{text}</span>
@@ -537,43 +593,17 @@ function TranscriptModal({ transcript, call, onClose }) {
    GROUNDED ITEM
 ============================================================ */
 
-function GroundedItem({ icon, text, confidence, sourceLines, excerpts }) {
+function GroundedItem({ icon, text, confidence, sourceLines, onJumpToLine }) {
   return (
     <div className="item-card">
       <div className="item-main">
         {icon}
         <div className="item-content">
           <p>{text}</p>
-          <Source lines={sourceLines} excerpts={excerpts} />
+          <CitationRow lines={sourceLines} onJumpToLine={onJumpToLine} />
         </div>
       </div>
       <Confidence value={confidence} />
-    </div>
-  );
-}
-
-/* ============================================================
-   SOURCE
-============================================================ */
-
-function Source({ lines, excerpts }) {
-  if (!lines?.length && !excerpts?.length) {
-    return null;
-  }
-
-  return (
-    <div className="source">
-      <div className="source-label">SOURCE EVIDENCE</div>
-      <div className="source-lines">
-        {(excerpts?.length ? excerpts : lines?.map((line) => ({ line, text: null })))?.map(
-          (item, index) => (
-            <div className="source-excerpt" key={index}>
-              <span>Line {item.line}</span>
-              {item.text ? <p>{item.text}</p> : <p className="no-excerpt">Transcript excerpt unavailable</p>}
-            </div>
-          )
-        )}
-      </div>
     </div>
   );
 }
@@ -820,6 +850,3 @@ function UploadModal({ onClose, onComplete }) {
 }
 
 export default App;
-
-
-

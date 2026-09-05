@@ -1394,3 +1394,56 @@ button {
 .transcript-text {
   color: #cbd5e1;
 }
+
+
+/* ============================================================
+   CITATION PILLS -- fast, compact, click-to-jump
+============================================================ */
+
+.citation-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.citation-label {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  color: #475569;
+  margin-right: 2px;
+}
+
+.citation-pill {
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  transition: background 0.1s, transform 0.1s;
+}
+
+.citation-pill:hover {
+  background: rgba(99, 102, 241, 0.28);
+  transform: translateY(-1px);
+}
+
+.citation-pill:active {
+  transform: translateY(0);
+}
+
+.no-source {
+  font-size: 10px;
+  color: #475569;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.transcript-line-highlight {
+  background: rgba(251, 191, 36, 0.15) !important;
+  outline: 1px solid rgba(251, 191, 36, 0.5);
+}
